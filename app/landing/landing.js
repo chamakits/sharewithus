@@ -3,7 +3,7 @@
 
     var userControllers = angular.module("UserControllers", []);
 
-    userControllers.controller("UserController", ["$scope", "$modal", function($scope,$modal) {
+    userControllers.controller("UserController", ["$scope", "$modal", function($scope, $modal) {
         $scope.loginDisplay = function() {
             console.log("loginDisplay");
             $scope.showLogin = true;
@@ -21,24 +21,39 @@
             // }, 1000);
         };
         $scope.signUpModal = function() {
-              var modalInstance = $modal.open({
-                  templateUrl: 'myModalContent.html',
-                  controller: 'SignUp',
-                  size: 'sm',
-                  resolve: {
-                  }
-              });
-        }
+            var modalInstance = $modal.open({
+                templateUrl: 'singUpModalContent.html',
+                controller: 'SignUp',
+                size: 'sm',
+                resolve: {}
+            });
+        };
+        $scope.loginModal = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'loginModalContent.html',
+                controller: 'LogIn',
+                size: 'sm',
+                resolve: {}
+            });
+        };
     }]);
 
     //LogIn
     userControllers.controller("LogIn", ["$scope", "$modalInstance", function($scope, $modalInstance) {
-        $scope.bla = "";
+
+        $scope.ok = function() {
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+        };
+
     }]);
     userControllers.controller("SignUp", ["$scope", "$modalInstance", function($scope, $modalInstance) {
-        
+
         $scope.ok = function() {
-            $modalInstance.close($scope.selected.item);
+            $modalInstance.close();
         };
 
         $scope.cancel = function() {

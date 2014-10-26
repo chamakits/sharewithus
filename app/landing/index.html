@@ -44,41 +44,65 @@
 </head>
 
 <body ng-controller="UserController">
+    <!--<script type="text/ng-template" id="myModalContent.html">
+      <div class="modal-header">
+          <h3 class="modal-title">Im a modal!</h3>
+      </div>
+      <div class="modal-body">
+          <input type="email" ng-model="email">
+          <input type="password" ng-model="password">
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+  </script> -->
+    <script type="text/ng-template" id="singUpModalContent.html">
+        <div>
+            <div class="modal-header">
+                <h3 class="modal-title">Sign Up!</h3>
+            </div>
+            <ul>
+                <li>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" ng-model="email" placeholder="Email">
+                </li>
+                <li>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" ng-model="password" placeholder="Password">
+                </li>
+            </ul>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="loginModalContent.html">
+        <div>
+            <div class="modal-header">
+                <h3 class="modal-title">Login!</h3>
+            </div>
+            <ul>
+                <li>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" ng-model="email" placeholder="Email">
+                </li>
+                <li>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" ng-model="password" placeholder="Password">
+                </li>
+            </ul>
+        </div>
+    </script>
+
     <div class="header">
         <!-- <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed"> -->
         <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
             <a class="pure-menu-heading" href="">Share With Us</a>
-
-                <!-- S2 -->
-                <div>
-                    <script type="text/ng-template" id="myModalContent.html">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Im a modal!</h3>
-                        </div>
-                        <div class="modal-body">
-                            <input type="email" ng-model="email">
-                            <input type="password" ng-model="password">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" ng-click="ok()">OK</button>
-                            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                        </div>
-                    </script>
-
-                    <!-- <button class="btn btn-default" ng-click="open()">Open me!</button> -->
-                    <!-- <button class="btn btn-default" ng-click="open('lg')">Large modal</button> -->
-                    <ul>
-                      <li class="pure-menu-selected btn btn-default"><a ng-click="open('sm')">Login</a>
-                      </li>
-                      <li><a href="#" ng-click="signUpDisplay()">Sign Up</a>
-                      </li>
-                    </ul>
-                    <!-- <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-                    <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
-                </div>
-
-
-                <!-- E2 -->
+            <ul>
+                <li class="pure-menu-selected"><a ng-click="loginModal()">Login</a>
+                </li>
+                <li><a href="#" ng-click="signUpModal()">Sign Up</a>
+                </li>
+            </ul>
         </div>
     </div>
 
