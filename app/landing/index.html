@@ -1,4 +1,4 @@
-<html ng-app="spiteApp">
+<html ng-app="landingSite">
 
 <head>
     <script src="/vendor/jquery-2.1.1/jquery.js"></script>
@@ -28,39 +28,90 @@
 
     <script src="/vendor/purecss-0.5.0/menu-layout/ui.js"></script>
 
-    <script src="/app/shared/task-model.js"></script>
-    <script src="/app/shared/layout-views.js"></script>
 
-
-    <script src="/app/main/app.js"></script>
-
-    <script src="/app/task-add/task-add-ctrl.js"></script>
-    <script src="/app/task-run/task-run-ctrl.js"></script>
-
-    <script src="/app/task-list/task-list-ctrl.js"></script>
+    <!-- <script src="/app/main/app.js"></script> -->
+    <script src="/app/landing/landing.js"></script>
 
     <!-- For landing page -->
     <link rel="stylesheet" href="/vendor/purecss-0.5.0/grids-responsive.css">
     <link rel="stylesheet" href="/app/landing/marketing-custom.css">
+    <link rel="stylesheet" href="/app/landing/custom.css">
+
 
 </head>
 
-<body>
+<body ng-controller="UserController">
     <div class="header">
         <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href="">Your Site</a>
+            <a class="pure-menu-heading" href="">Share With Us</a>
 
             <ul>
-                <li class="pure-menu-selected"><a href="#">Login</a>
+                <li class="pure-menu-selected"><a ng-click="loginDisplay()">Login</a>
                 </li>
-                <li><a href="#">Sign Up</a>
+                <!-- S -->
+                <!-- Button trigger modal -->
+                <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Launch demo modal
+                </button> -->
+
+                <!-- Modal -->
+                <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- E -->
+
+
+                <li><a href="#" ng-click="signUpDisplay()">Sign Up</a>
                 </li>
             </ul>
         </div>
     </div>
 
+    <div class="pure-menu">
+        <div ng-if="showLogin" ng-controller="LogIn" class="pure-menu-">
+
+            <div>
+              <ul>
+                <li>
+                <label>Log in:</label>
+                <label for="email">Email</label>
+                <input id="email" type="email" ng-model="email" placeholder="Email">
+                </li>
+                <li>
+                <label for="password">Password</label>
+                <input id="password" type="password" ng-model="password" placeholder="Password">
+                </li>
+              </ul>
+            </div>
+        </div>
+        <div ng-if="showSignUp" ng-controller="SignUp" class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+            <label for="">Sign up:</label>
+            <label for="email">Email</label>
+            <input id="email" type="email" ng-model="email" placeholder="Email">
+            <label for="password">Password</label>
+            <input id="password" type="password" ng-model="password" placeholder="Password">
+        </div>
+
+    </div>
+
     <div class="splash-container">
         <div class="splash">
+            <img src="calendar-timer3.png" class="icon-cal" alt="">
             <h1 class="splash-head">Share With Us</h1>
             <p class="splash-subhead">
                 An easy way to communicate and share with your community.
@@ -173,7 +224,7 @@
 
     </div>
 
-
+    <script src="/app/landing/modal.js"></script>
 </body>
 
 </html>
