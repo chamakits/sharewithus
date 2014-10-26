@@ -39,11 +39,11 @@ var taskFunctions = {
     beauty: beautifyFilesClosure(patterns.beauty, beautify.js, "./utils/node/")
 }
 
-gulp.task("prettyallhtml", taskFunctions.prettyhtml);
+gulp.task("prettyallhtml", taskFunctions.html);
 
-gulp.task("prettyalljs", taskFunctions.prettyjs);
+gulp.task("prettyalljs", taskFunctions.js);
 
-gulp.task("prettyallcss", taskFunctions.prettycss);
+gulp.task("prettyallcss", taskFunctions.css);
 
 gulp.task("prettyall", ["prettyallhtml", "prettyalljs", "prettyallcss"]);
 

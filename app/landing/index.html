@@ -4,7 +4,6 @@
     <script src="/vendor/jquery-2.1.1/jquery.js"></script>
     <link rel="stylesheet" href="/vendor/bootstrap-3.2.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="/vendor/bootstrap-3.2.0-dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="/app/shared/custom-style.css">
 
     <link rel="stylesheet" href="/vendor/purecss-0.5.0/pure.css">
     <link rel="stylesheet" href="/vendor/purecss-0.5.0/forms.css">
@@ -37,48 +36,49 @@
     <link rel="stylesheet" href="/app/landing/marketing-custom.css">
     <link rel="stylesheet" href="/app/landing/custom.css">
 
+    <!-- ANgular modal stuff -->
+
+    <script src="/vendor/angular-ui-0.11.2/ui-bootstrap-tpls.js"></script>
+    <script src="/vendor/purecss-0.5.0/menu-layout/ui.js"></script>
 
 </head>
 
 <body ng-controller="UserController">
     <div class="header">
+        <!-- <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed"> -->
         <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
             <a class="pure-menu-heading" href="">Share With Us</a>
 
-            <ul>
-                <li class="pure-menu-selected"><a ng-click="loginDisplay()">Login</a>
-                </li>
-                <!-- S -->
-                <!-- Button trigger modal -->
-                <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Launch demo modal
-                </button> -->
-
-                <!-- Modal -->
-                <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                            </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
+                <!-- S2 -->
+                <div>
+                    <script type="text/ng-template" id="myModalContent.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Im a modal!</h3>
                         </div>
-                    </div>
-                </div> -->
-                <!-- E -->
+                        <div class="modal-body">
+                            <input type="email" ng-model="email">
+                            <input type="password" ng-model="password">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" ng-click="ok()">OK</button>
+                            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </script>
+
+                    <!-- <button class="btn btn-default" ng-click="open()">Open me!</button> -->
+                    <!-- <button class="btn btn-default" ng-click="open('lg')">Large modal</button> -->
+                    <ul>
+                      <li class="pure-menu-selected btn btn-default"><a ng-click="open('sm')">Login</a>
+                      </li>
+                      <li><a href="#" ng-click="signUpDisplay()">Sign Up</a>
+                      </li>
+                    </ul>
+                    <!-- <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+                    <div ng-show="selected">Selection from a modal: {{ selected }}</div> -->
+                </div>
 
 
-                <li><a href="#" ng-click="signUpDisplay()">Sign Up</a>
-                </li>
-            </ul>
+                <!-- E2 -->
         </div>
     </div>
 
@@ -86,17 +86,17 @@
         <div ng-if="showLogin" ng-controller="LogIn" class="pure-menu-">
 
             <div>
-              <ul>
-                <li>
-                <label>Log in:</label>
-                <label for="email">Email</label>
-                <input id="email" type="email" ng-model="email" placeholder="Email">
-                </li>
-                <li>
-                <label for="password">Password</label>
-                <input id="password" type="password" ng-model="password" placeholder="Password">
-                </li>
-              </ul>
+                <ul>
+                    <li>
+                        <label>Log in:</label>
+                        <label for="email">Email</label>
+                        <input id="email" type="email" ng-model="email" placeholder="Email">
+                    </li>
+                    <li>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" ng-model="password" placeholder="Password">
+                    </li>
+                </ul>
             </div>
         </div>
         <div ng-if="showSignUp" ng-controller="SignUp" class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
@@ -169,7 +169,7 @@
 
         <div class="ribbon l-box-lrg pure-g">
             <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-                <img class="pure-img-responsive" alt="File Icons" width="300" src="img/common/file-icons.png">
+                <img class="pure-img-responsive" alt="File Icons" width="300" src="">
             </div>
             <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
