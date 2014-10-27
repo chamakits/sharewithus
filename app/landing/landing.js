@@ -23,23 +23,23 @@
         $scope.signUpModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'singUpModalContent.html',
-                controller: 'SignUp',
-                size: 'sm',
+                controller: 'SignUpController',
+                size: 'md',
                 resolve: {}
             });
         };
         $scope.loginModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'loginModalContent.html',
-                controller: 'LogIn',
-                size: 'sm',
+                controller: 'LogInController',
+                size: 'md',
                 resolve: {}
             });
         };
     }]);
 
     //LogIn
-    userControllers.controller("LogIn", ["$scope", "$modalInstance", function($scope, $modalInstance) {
+    userControllers.controller("LogInController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
 
         $scope.ok = function() {
             $modalInstance.close();
@@ -50,7 +50,7 @@
         };
 
     }]);
-    userControllers.controller("SignUp", ["$scope", "$modalInstance", function($scope, $modalInstance) {
+    userControllers.controller("SignUpController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
 
         $scope.ok = function() {
             $modalInstance.close();
@@ -63,50 +63,4 @@
     }]);
 
 
-}(this));
-
-(function(that) {
-    angular.module('landingSite').controller('ModalDemoCtrl', function($scope, $modal, $log) {
-
-        $scope.items = ['item1', 'item2', 'item3'];
-
-        $scope.open = function(size) {
-
-            var modalInstance = $modal.open({
-                templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
-                size: size,
-                resolve: {
-                    items: function() {
-                        return $scope.items;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
-    });
-
-    // Please note that $modalInstance represents a modal window (instance) dependency.
-    // It is not the same as the $modal service used above.
-
-    angular.module('landingSite').controller('ModalInstanceCtrl', function($scope, $modalInstance, items) {
-
-        $scope.items = items;
-        $scope.selected = {
-            item: $scope.items[0]
-        };
-
-        $scope.ok = function() {
-            $modalInstance.close($scope.selected.item);
-        };
-
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-    });
 }(this));

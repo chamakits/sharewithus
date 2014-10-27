@@ -50,16 +50,28 @@
             <div class="modal-header">
                 <h3 class="modal-title">Sign Up!</h3>
             </div>
-            <ul>
-                <li>
-                    <label for="email">Email</label>
-                    <input id="email" type="email" ng-model="email" placeholder="Email">
-                </li>
-                <li>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" ng-model="password" placeholder="Password">
-                </li>
-            </ul>
+            <table class="pure-table">
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="email">Email</label>
+                        </td>
+                        <td>
+                            <input id="email" type="email" ng-model="email" placeholder="Email">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="password">Password</label>
+                        </td>
+                        <td>
+                            <input id="password" type="password" ng-model="password" placeholder="Password">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">OK</button>
                 <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
@@ -72,16 +84,26 @@
             <div class="modal-header">
                 <h3 class="modal-title">Login!</h3>
             </div>
-            <ul>
-                <li>
-                    <label for="email">Email</label>
-                    <input id="email" type="email" ng-model="email" placeholder="Email">
-                </li>
-                <li>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" ng-model="password" placeholder="Password">
-                </li>
-            </ul>
+            <table class="pure-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="email">Email</label>
+                        </td>
+                        <td>
+                            <input id="email" type="email" ng-model="email" placeholder="Email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password">Password</label>
+                        </td>
+                        <td>
+                            <input id="password" type="password" ng-model="password" placeholder="Password">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">OK</button>
                 <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
@@ -101,34 +123,6 @@
             </ul>
         </div>
     </div>
-
-    <div class="pure-menu">
-        <div ng-if="showLogin" ng-controller="LogIn" class="pure-menu-">
-
-            <div>
-                <ul>
-                    <li>
-                        <label>Log in:</label>
-                        <label for="email">Email</label>
-                        <input id="email" type="email" ng-model="email" placeholder="Email">
-                    </li>
-                    <li>
-                        <label for="password">Password</label>
-                        <input id="password" type="password" ng-model="password" placeholder="Password">
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div ng-if="showSignUp" ng-controller="SignUp" class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-            <label for="">Sign up:</label>
-            <label for="email">Email</label>
-            <input id="email" type="email" ng-model="email" placeholder="Email">
-            <label for="password">Password</label>
-            <input id="password" type="password" ng-model="password" placeholder="Password">
-        </div>
-
-    </div>
-
     <div class="splash-container">
         <div class="splash">
             <img src="calendar-timer3.png" class="icon-cal" alt="">
