@@ -1,5 +1,5 @@
 (function(that) {
-    var landingSite = angular.module("landingSite", ["UserControllers", "ui.bootstrap"]);
+    var landingSite = angular.module("landingSite", ["UserControllers", "ui.bootstrap", "ngResource"]);
 
     var userControllers = angular.module("UserControllers", []);
     userControllers.controller("UserController", ["$scope", "$modal", function($scope, $modal) {
@@ -85,7 +85,7 @@
 
         }
     ]);
-    
+
     userControllers.controller("SignUpController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
 
         $scope.ok = function() {
