@@ -2,7 +2,6 @@
     var landingSite = angular.module("landingSite", ["UserControllers", "ui.bootstrap"]);
 
     var userControllers = angular.module("UserControllers", []);
-
     userControllers.controller("UserController", ["$scope", "$modal", function($scope, $modal) {
         $scope.loginDisplay = function() {
             console.log("loginDisplay");
@@ -38,18 +37,55 @@
         };
     }]);
 
-    //LogIn
-    userControllers.controller("LogInController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
+    var LOGIN_URL = "http://localhost:9090/api/add-task";
+    userControllers.factory("LoginService", ["$resource", function($resource) {
+        return $resource(LOGIN_URL, {}, {
+            query: {
+                method: "POST",
+                //TODO if it fails, it might be from missing params here.  but shouldn't be.
+                //TODO trying to fully validate what I said.
+                params: {
+                    "data": {},
+                    "task": {}
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                response: function(resp) {
+                    console.log("Success on resource query set.");
+                }
 
-        $scope.ok = function() {
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-
+            }
+        });
     }]);
+
+
+
+    //LogIn
+    userControllers.controller("LogInController", ["$scope", "$modalInstance", "LoginService",
+        function($scope, $modalInstance, LoginService) {
+
+            $scope.ok = function() {
+                $modalInstance.close();
+                var loginService = new LoginService();
+                loginService.userName = $scope.userName;
+                loginService.password = $scope.password;
+                loginService.$save().then(function(succ) {
+                    console.log("Succeded!")
+                    console.log(succ)
+                }, function(err) {
+                    console.log("Failed!")
+                    console.log(err)
+                });
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+
+        }
+    ]);
+    
     userControllers.controller("SignUpController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
 
         $scope.ok = function() {
