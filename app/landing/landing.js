@@ -1,24 +1,11 @@
 (function(that) {
-    var landingSite = angular.module("landingSite", ["UserControllers", "ui.bootstrap", "ngResource"]);
+    var SERVER_ROOT = "http://localhost:9090";
+    that.SERVER_ROOT = SERVER_ROOT;
+    var landingSite = angular.module("landingSite", ["UserControllers", "ui.bootstrap", "ngResource", "ngCookies"]);
 
     var userControllers = angular.module("UserControllers", []);
     userControllers.controller("UserController", ["$scope", "$modal", function($scope, $modal) {
-        $scope.loginDisplay = function() {
-            console.log("loginDisplay");
-            $scope.showLogin = true;
-            $scope.showSignUp = false;
-        };
-        $scope.signUpDisplay = function() {
-            console.log("signUpDisplay");
-            $scope.showLogin = false;
-            $scope.showSignUp = true;
-            // setTimeout(function() {
-            //     $scope.$apply(function() {
-            //         $scope.showLogin = true;
-            //         $scope.showSignUp = true;
-            //     });
-            // }, 1000);
-        };
+
         $scope.signUpModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'singUpModalContent.html',
@@ -37,22 +24,16 @@
         };
     }]);
 
-    var LOGIN_URL = "http://localhost:9090/api/add-task";
+
+    var LOGIN_URL = SERVER_ROOT + "/login";
     userControllers.factory("LoginService", ["$resource", function($resource) {
         return $resource(LOGIN_URL, {}, {
             query: {
                 method: "POST",
                 //TODO if it fails, it might be from missing params here.  but shouldn't be.
                 //TODO trying to fully validate what I said.
-                params: {
-                    "data": {},
-                    "task": {}
-                },
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                response: function(resp) {
-                    console.log("Success on resource query set.");
                 }
 
             }
@@ -62,8 +43,8 @@
 
 
     //LogIn
-    userControllers.controller("LogInController", ["$scope", "$modalInstance", "LoginService",
-        function($scope, $modalInstance, LoginService) {
+    userControllers.controller("LogInController", ["$scope", "$cookies", "$modalInstance", "LoginService",
+        function($scope, $cookies, $modalInstance, LoginService) {
 
             $scope.ok = function() {
                 $modalInstance.close();
@@ -73,6 +54,7 @@
                 loginService.$save().then(function(succ) {
                     console.log("Succeded!")
                     console.log(succ)
+                    $cookies.token = succ.token;
                 }, function(err) {
                     console.log("Failed!")
                     console.log(err)
@@ -86,17 +68,44 @@
         }
     ]);
 
-    userControllers.controller("SignUpController", ["$scope", "$modalInstance", function($scope, $modalInstance) {
+    var REGISTER_URL = SERVER_ROOT + "/register";
+    userControllers.factory("RegisterService", ["$resource", function($resource) {
+        return $resource(REGISTER_URL, {}, {
+            query: {
+                method: "POST",
+                //TODO if it fails, it might be from missing params here.  but shouldn't be.
+                //TODO trying to fully validate what I said.
+                headers: {
+                    'Content-Type': 'application/json'
+                }
 
-        $scope.ok = function() {
-            $modalInstance.close();
-        };
-
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-
+            }
+        });
     }]);
+    userControllers.controller("SignUpController", ["$scope", "$cookies", "$modalInstance", "RegisterService",
+        function($scope, $cookies, $modalInstance, RegisterService) {
+
+            $scope.ok = function() {
+                $modalInstance.close();
+                var registerService = new RegisterService();
+                registerService.userName = $scope.userName;
+                registerService.password = $scope.password;
+                registerService.$save().then(function(succ) {
+                    console.log("Succeded!")
+                    console.log(succ)
+                    $cookies.token = succ.token;
+                }, function(err) {
+                    console.log("Failed!")
+                    console.log(err)
+                });
+            };
+
+            $scope.cancel = function() {
+                $modalInstance.dismiss('cancel');
+            };
+
+        }
+    ]);
 
 
 }(this));
