@@ -1,7 +1,6 @@
 (function(that) {
-    var spiteApp = angular.module("spiteApp", ["spiteAppControllers",
-        "ngResource", "ngRoute"
-    ]);
+    var shareWithUsApp = angular.module("shareWithUsApp", ["UserControllers", "ui.bootstrap", "ngResource", "ngCookies", "ngRoute"]);
+
 
     function MenuLinks(template, controller, link, text) {
         this.template = template;
@@ -14,8 +13,8 @@
     var spiteAppControllers = angular.module("spiteAppControllers", []);
 
     var links = [
-        new MenuLinks("/app/task-run/task-run-part.html",
-            "TaskRunCtrl", "/task-run", "Task Run"),
+        new MenuLinks("/app/things/places.html",
+            "PlacesCtrl", "/things/p/{place}", "Places"),
         new MenuLinks("/app/task-add/task-add-part.html",
             "TaskAddCtrl", "/task-add", "Task Add"),
         new MenuLinks("/app/task-list/task-list-part.html",
