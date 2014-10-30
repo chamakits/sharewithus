@@ -13,8 +13,10 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                isArray:true,
             }
         });
+
     }]);
 
 
@@ -22,9 +24,15 @@
         function($scope, $routeParams, SeeThingsInPlaceService) {
             var thingServer = new SeeThingsInPlaceService();
             console.log(thingServer);
-            thingServer.$get({}, function(items) {
+            console.log(SeeThingsInPlaceService);
+            // thingServer.$get({}, function(items) {
+            SeeThingsInPlaceService.query(function(items) {
                 console.log("Items:");
                 console.log(items);
+                // items.forEach(function(curr){
+                angular.forEach(items, function(curr){
+                  console.log(curr);
+                });
             });
 
         }
