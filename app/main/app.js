@@ -1,5 +1,5 @@
 (function(that) {
-    var shareWithUsApp = angular.module("shareWithUsApp", ["UserControllers", "ui.bootstrap", "ngResource", "ngCookies", "ngRoute"]);
+    var shareWithUsApp = angular.module("shareWithUsApp", ["appControllers", "ui.bootstrap", "ngResource", "ngCookies", "ngRoute"]);
 
 
     function MenuLinks(template, controller, link, text) {
@@ -10,39 +10,21 @@
     };
     that.MenuLinks = MenuLinks;
 
-    var spiteAppControllers = angular.module("spiteAppControllers", []);
+    var appControllers = angular.module("appControllers", []);
 
     var links = [
-        new MenuLinks("/app/things/places.html",
+        new MenuLinks("/app/things/places-part.html",
             "PlacesCtrl", "/things/p/{place}", "Places"),
-        new MenuLinks("/app/task-add/task-add-part.html",
-            "TaskAddCtrl", "/task-add", "Task Add"),
-        new MenuLinks("/app/task-list/task-list-part.html",
-            "TaskListCtrl", "/task-list", "Task List"),
-        new MenuLinks("/app/task-detail/task-detail-part.html",
-            "TaskDetailCtrl", "/task-detail", "Task Detail"),
+        new MenuLinks("/app/main/home.html",
+            null, "/", "Home"),
     ];
 
 
-    spiteAppControllers.controller("MenuController", ["$scope", function($scope) {
+    appControllers.controller("MenuController", ["$scope", function($scope) {
         $scope.headers = links;
     }]);
 
-    spiteApp.config(["$routeProvider", function($routeProvider) {
-        // $routeProvider
-        //   .when("/task-run", {
-        //     templateUrl: "/app/task-run/task-run-part.html",
-        //     controller: "TaskRunCtrl"
-        //   })
-        //   .when("/task-add", {
-        //     templateUrl: "/app/task-add/task-add-part.html",
-        //     controller: "TaskAddCtrl"
-        //   })
-        //   .otherwise({
-        //     redirectTo: "/"
-        //   });
-
-
+    shareWithUsApp.config(["$routeProvider", function($routeProvider) {
 
         var routeProvider = $routeProvider;
         _(links).forEach(function(link) {
@@ -58,6 +40,6 @@
 
     }]);
 
-    spiteAppControllers.controller("")
+    // appControllers.controller("")
 
 }(this));

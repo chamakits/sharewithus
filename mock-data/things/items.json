@@ -1,0 +1,16 @@
+[{
+  "id": "APT01",
+  "avgTime": 2700,
+  "timeRunning": 700,
+  "status": "IN USE",
+}, {
+  "id": "APT02",
+  "avgTime": 2700,
+  "timeRunning": 2000,
+  "status": "IN USE",
+}, {
+  "id": "APT03",
+  "avgTime": 2700,
+  "timeRunning": 0,
+  "status": "AVAILABLE",
+}, 
